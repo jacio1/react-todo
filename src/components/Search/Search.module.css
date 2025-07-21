@@ -1,0 +1,11 @@
+.wrapper {
+  width: 400px;
+  margin: auto;
+  position: relative;
+}
+
+.clear {
+  position: absolute !important;
+  top: 8px;
+  right: 5px;
+}

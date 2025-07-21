@@ -1,0 +1,19 @@
+.addBtn {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 48.3%;
+  bottom: 20px;
+  background-color: #2f80ed;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+
+.addBtn:hover {
+  box-shadow: -3px -3px 26px 26px red;
+}

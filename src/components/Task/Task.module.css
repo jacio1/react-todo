@@ -1,0 +1,47 @@
+.task {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 500px;
+  min-height: 250px;
+  justify-content: center;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 25px rgba(186, 186, 186, 0.25);
+}
+
+.task:last-child {
+  margin-bottom: 0;
+}
+
+.taskCheck {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.taskCheck input {
+  width: 40px;
+  height: 50px;
+  background: none;
+}
+
+.iconIsNotDone {
+  color: #539cfd;
+}
+
+.taskActions {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+}
+
+.deleteDialog {
+  padding: 20px;
+}
+
+.isDone {
+  color: #d8d8d8;
+}
