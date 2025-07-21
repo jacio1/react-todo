@@ -9,3 +9,29 @@
   top: 8px;
   right: 5px;
 }
+
+
+.customTextField label {
+  color: #fff !important;;
+}
+
+.customTextField label.Mui-focused {
+  color: #fff !important;;
+}
+
+.customTextField .MuiOutlinedInput-root {
+  color: #fff !important;
+}
+
+.customTextField .MuiOutlinedInput-root fieldset {
+  border-color: #fff !important;
+}
+
+.customTextField .MuiOutlinedInput-root:hover fieldset {
+  border-color: #fff !important;;
+}
+
+.customTextField .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #fff !important;;
+}
+

@@ -32,10 +32,17 @@ export default function Search({ setSearchGlobal }) {
         fullWidth
         value={searchText}
         onInput={(e) => setSearchText(e.target.value)}
+        className={css.customTextField}
+        sx={{
+          "& .MuiOutlinedInput-input": {
+            color: "#fff",
+          },
+        }}
       />
+
       {isClear && (
         <IconButton onClick={() => onClearClick()} className={css.clear}>
-          <CloseIcon />
+          <CloseIcon sx={{ color: "#fff" }} />
         </IconButton>
       )}
     </div>

@@ -83,98 +83,122 @@ export default function Task({ task, changeTask, deleteTask }) {
   };
 
   return (
-    <Fade in>
-      <div className={`${css.task}`}>
-        <div className={css.taskCheck}>
+  <Fade in>
+    <div className={css.task}>
+      <div className={css.taskCheck}>
+        <Checkbox
+          checked={isDone}
+          onChange={() => onChangeDoneStatus()}
+          sx={{
+            color: isDone ? "#757575" : "#fff", 
+            "&.Mui-checked": {
+              color: isDone ? "#757575" : "#42A5F5",
+            },
+          }}
+        />
+      </div>
+
+      <div className={css.taskInfo}>
+        {isEdit ? (
+          <>
+            <div className={css.taskInfoTitleInput}>
+              <TextField
+                inputRef={inputTitleRef}
+                label="Название"
+                variant="outlined"
+                size="small"
+                defaultValue={taskTitle}
+                onChange={(e) => setTaskTitle(e.target.value)}
+                sx={{
+                  "& label": { color: "#bbb" },
+                  "& label.Mui-focused": { color: "#90caf9" },
+                  "& .MuiOutlinedInput-root": {
+                    color: "#eee",
+                    backgroundColor: "#222",
+                    "& fieldset": { borderColor: "#555" },
+                    "&:hover fieldset": { borderColor: "#90caf9" },
+                    "&.Mui-focused fieldset": { borderColor: "#90caf9" },
+                  },
+                }}
+              />
+            </div>
+
+            <div className={css.taskInfoDescriptionInput}>
+              <TextField
+                label="Описание"
+                variant="outlined"
+                size="small"
+                defaultValue={taskDescription}
+                onChange={(e) => setTaskDescription(e.target.value)}
+                sx={{
+                  "& label": { color: "#bbb" },
+                  "& label.Mui-focused": { color: "#90caf9" },
+                  "& .MuiOutlinedInput-root": {
+                    color: "#eee",
+                    backgroundColor: "#222",
+                    "& fieldset": { borderColor: "#555" },
+                    "&:hover fieldset": { borderColor: "#90caf9" },
+                    "&.Mui-focused fieldset": { borderColor: "#90caf9" },
+                  },
+                }}
+                multiline
+                rows={2}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 className={css.taskInfoTitle} style={{ color: isDone ? "#757575" : "#e0e0e0" }}>
+              {task.title}
+            </h2>
+            <p className={css.taskInfoDescription} style={{ color: isDone ? "#616161" : "#ccc" }}>
+              {task.description}
+            </p>
+          </>
+        )}
+      </div>
+
+      <div className={css.taskActions}>
+        {isEdit ? (
+          <>
+            <IconButton onClick={() => acceptChanges()} sx={{ color: "#fff" }}>
+              <CheckIcon />
+            </IconButton>
+            <IconButton onClick={() => declineChanges()} sx={{ color: "#ef5350" }}>
+              <CloseIcon />
+            </IconButton>
+          </>
+        ) : (
           <Checkbox
-            checked={isDone}
-            onChange={() => onChangeDoneStatus()}
+            checked={isEdit}
+            onChange={() => setIsEdit(!isEdit)}
+            icon={<EditIcon className={css[isDone ? "iconIsDone" : "iconIsNotDone"]} />}
             sx={{
-              color: isDone ? "#D8D8D8" : "#539CFD",
-              "&.Mui-checked": { color: isDone ? "D8D8D8" : "#539CFD" },
+              color: isDone ? "#757575" : "#64B5F6",
+              "&.Mui-checked": { color: "#90caf9" },
             }}
           />
-        </div>
-        <div className={css.taskInfo}>
-          {isEdit ? (
-            <>
-              <div className={css.taskInfoTitleInput}>
-                <TextField
-                  inputRef={inputTitleRef}
-                  label="Название "
-                  defaultValue={taskTitle}
-                  onChange={(e) => {
-                    setTaskTitle(e.target.value);
-                  }}
-                />
-              </div>
-              <div className={css.taskInfoDescriptionInput}>
-                {" "}
-                <TextField
-                  label="Описание "
-                  defaultValue={taskDescription}
-                  onChange={(e) => {
-                    setTaskDescription(e.target.value);
-                  }}
-                />
-              </div>
-            </>
-          ) : (
-            <>
-              <h2 className={css.taskInfoTitle}>{task.title}</h2>
-              <p className={css.taskInfoDescription}> {task.description}</p>
-            </>
-          )}
-        </div>
-        <div className={css.taskActions}>
-          {isEdit ? (
-            <>
-              <IconButton onClick={() => acceptChanges()}>
-                <CheckIcon
-                  sx={{
-                    color: isDone ? "#D8D8D8" : "#539CFD",
-                  }}
-                />
-              </IconButton>
-              <IconButton onClick={() => declineChanges()}>
-                <CloseIcon
-                  sx={{
-                    color: isDone ? "#D8D8D8" : "#539CFD",
-                  }}
-                />
-              </IconButton>
-            </>
-          ) : (
-            <Checkbox
-              checked={isEdit}
-              onChange={() => setIsEdit(!isEdit)}
-              icon={
-                <EditIcon
-                  className={css[isDone ? "iconIsDone" : "iconIsNotDone"]}
-                />
-              }
-            />
-          )}
-          <IconButton onClick={() => setIsShowDialog(true)}>
-            <DeleteOutlineIcon
-              sx={{
-                color: isDone ? "#D8D8D8" : "#539CFD",
-              }}
-            />
-          </IconButton>
-          <Dialog
-            open={isShowDialog}
-            aria-labelledy="alert-dialog-title"
-            maxWidth="md"
-          >
-            <DialogTitle>{"Удалить задачу"}</DialogTitle>
-            <DialogActions>
-              <Button onClick={() => modalAccept()}>Удалить</Button>
-              <Button onClick={() => onModalDecline()}>Отменить</Button>
-            </DialogActions>
-          </Dialog>
-        </div>
+        )}
+
+        <IconButton onClick={() => setIsShowDialog(true)} sx={{ color: "#ef5350" }}>
+          <DeleteOutlineIcon />
+        </IconButton>
+
+        <Dialog open={isShowDialog} aria-labelledby="alert-dialog-title" maxWidth="md">
+          <DialogTitle id="alert-dialog-title" sx={{ color: "#eee", backgroundColor: "#333" }}>
+            Удалить задачу
+          </DialogTitle>
+          <DialogActions sx={{ backgroundColor: "#222" }}>
+            <Button onClick={() => modalAccept()} sx={{ color: "#ef5350" }}>
+              Удалить
+            </Button>
+            <Button onClick={() => onModalDecline()} sx={{ color: "#90caf9" }}>
+              Отменить
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
-    </Fade>
-  );
+    </div>
+  </Fade>
+);
 }

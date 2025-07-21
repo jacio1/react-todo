@@ -52,7 +52,9 @@ function App() {
 
   const onDeleteTask = deleteTask(tasks, setTasks);
 
+  
   return (
+    
     <NotifyContext.Provider
       value={{ notifications, showNotification, removeNotificationById }}
     >

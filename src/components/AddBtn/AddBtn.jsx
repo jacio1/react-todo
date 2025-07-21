@@ -7,7 +7,17 @@ export default function AddBtn({ children }) {
   const [isModal, setIsModal] = useState(false);
   return (
     <>
-      <Dialog open={isModal} onClose={() => setIsModal(false)}>
+      <Dialog
+        open={isModal}
+        onClose={() => setIsModal(false)}
+        disableScrollLock
+        className={css.dialog}
+        sx={{
+          "& .MuiPaper-root": {
+            backgroundColor: "#242424", // тёмный фон
+          },
+        }}
+      >
         {children(() => setIsModal(false))}
       </Dialog>
       <div onClick={() => setIsModal(true)} className={css.addBtn}>

@@ -1,47 +1,60 @@
 .task {
   display: flex;
   align-items: center;
-  position: relative;
-  width: 500px;
-  min-height: 250px;
-  justify-content: center;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 25px rgba(186, 186, 186, 0.25);
+  background-color: #1e1e1e;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.623);
+  transition: background-color 0.3s ease;
 }
 
-.task:last-child {
-  margin-bottom: 0;
+.task:hover {
+  background-color: #2a2a2a;
 }
 
 .taskCheck {
-  position: absolute;
-  left: 10px;
-  top: 10px;
+  margin-right: 16px;
 }
 
-.taskCheck input {
-  width: 40px;
-  height: 50px;
-  background: none;
+.taskInfo {
+  flex-grow: 1;
+  min-width: 0;
 }
 
-.iconIsNotDone {
-  color: #539cfd;
+.taskInfoTitle {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.taskInfoDescription {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: #bbb;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.taskInfoTitleInput,
+.taskInfoDescriptionInput {
+  margin-bottom: 8px;
 }
 
 .taskActions {
-  position: absolute;
   display: flex;
   align-items: center;
-  right: 10px;
-  top: 10px;
+  gap: 8px;
 }
 
-.deleteDialog {
-  padding: 20px;
+.iconIsDone {
+  color: #757575 !important;
 }
 
-.isDone {
-  color: #d8d8d8;
+.iconIsNotDone {
+  color: #fff !important;
 }

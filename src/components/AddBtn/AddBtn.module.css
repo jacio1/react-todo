@@ -9,11 +9,13 @@
   position: fixed;
   left: 48.3%;
   bottom: 20px;
-  background-color: #2f80ed;
+  background-color: #1e1e1e;
   cursor: pointer;
   transition: 0.5s all;
 }
 
 .addBtn:hover {
-  box-shadow: -3px -3px 26px 26px red;
+  width: 65px;
+  height: 65px;
+  box-shadow: 0 0 8px 2px #fff;
 }
